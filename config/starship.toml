@@ -1,0 +1,24 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = '[$username$hostname$directory$git_branch$git_state](white): '
+add_newline = false
+
+[hostname]
+ssh_symbol = '@'
+format = '[$ssh_symbol$hostname]($style)'
+style = 'bold green'
+
+[username]
+format = '[$user]($style)'
+
+[directory]
+format = '[$read_only]($read_only_style) - [$path]($style)'
+read_only_style = 'white'
+style = 'bold white'
+truncation_symbol = '.../'
+
+
+
+
+[git_branch]
+format = ' \[[$branch]($style)\]'
