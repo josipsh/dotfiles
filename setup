@@ -1,0 +1,4 @@
+
+
+
+ln -s "${PWD}/.agents" ~/.agents
