@@ -1,4 +1,35 @@
+#!/bin/bash
 
+echo "PWD: ${PWD}"
 
+if [[ -d ~/.agents ]]; then 
+    echo "~agents folder exists"
+else
+    echo "~agents folder dies not exists, creating"
+    mkdir ~/.agents
+    echo "~agents folder created!"
+fi
+echo
 
-ln -s "${PWD}/.agents" ~/.agents
+function create_or_recreate {
+    if [[ -L $2 ]]; then
+        echo "$2 link already exists, recreating..."
+        unlink $2
+        ln -s $1 $2
+        echo "$2 is recreated!"
+    else
+        echo "$2 link does not exists, creating..."
+        ln -s $1 $2
+        echo "$2 is created!"
+    fi
+}
+
+create_or_recreate "${PWD}/.agents/AGENTS.md" ~/.agents/AGENTS.md
+echo
+create_or_recreate "${PWD}/.agents/skills" ~/.agents/skills
+echo
+
+create_or_recreate "${PWD}/.opencode/agents" ~/.opencode/agents
+echo
+create_or_recreate "${PWD}/.opencode/opencode.jsonc" ~/.opencode/opencode.jsonc
+echo
