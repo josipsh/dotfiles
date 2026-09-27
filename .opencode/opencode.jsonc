@@ -1,0 +1,10 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    // Use this model by default.
+    "model": "openai/gpt-5.6-sol",
+    "default_agent": "grillMe_agent",
+    "update": "notify", // to get nitification on updates
+    "worktree": {
+        "directory": "~/worktrees",
+    },
+}
