@@ -1,0 +1,32 @@
+#!/bin/bash
+echo "Fetching all the latest git data..."
+git fetch --all --prune
+
+local_branches=()
+remote_branches=()
+
+while IFS= read -r branch; do
+  local_branches+=("$branch")
+done < <(git branch --format='%(refname:short)')
+
+while IFS= read -r branch; do
+  remote_branches+=("${branch#*/}")
+done < <(git branch --remote --format='%(refname:short)')
+
+
+for local_branch in "${local_branches[@]}"; do
+    does_exist=false
+    for remote_branch in "${remote_branches[@]}"; do
+        if [[ "$local_branch" == "$remote_branch" ]]; then
+            does_exist=true
+        fi
+    done
+
+    if $does_exist; then
+        echo "Branch does exist on remote, NOT removing it. | Branch name: [$local_branch]"
+    else
+        echo "Branch doesnt exist on remote, Removing it.... | Branch name: [$local_branch]"
+        git branch -D "$local_branch"
+    fi
+    echo
+done
