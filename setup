@@ -10,6 +10,24 @@ else
     echo "~agents folder created!"
 fi
 echo
+if [[ -d ~/.opencode ]]; then 
+    echo "~.opencode folder exists"
+else
+    echo "~.opencode folder dies not exists, creating"
+    mkdir ~/.opencode
+    echo "~.opencode folder created!"
+fi
+echo
+
+if [[ -d ~/.config ]]; then 
+    echo "~.config folder exists"
+else
+    echo "~.config folder dies not exists, creating"
+    mkdir ~/.config
+    echo "~.config folder created!"
+fi
+echo
+
 
 function create_or_recreate {
     if [[ -L $2 ]]; then
@@ -33,3 +51,4 @@ create_or_recreate "${PWD}/.opencode/agents" ~/.opencode/agents
 echo
 create_or_recreate "${PWD}/.opencode/opencode.jsonc" ~/.opencode/opencode.jsonc
 echo
+create_or_recreate "${PWD}/config/starship.toml" ~/.config/starship.toml
