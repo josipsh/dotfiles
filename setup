@@ -24,6 +24,7 @@ if [[ -d ~/.config ]]; then
 else
     echo "~.config folder dies not exists, creating"
     mkdir ~/.config
+    mkdir ~/.config/tmux
     echo "~.config folder created!"
 fi
 echo
@@ -52,3 +53,5 @@ echo
 create_or_recreate "${PWD}/.opencode/opencode.jsonc" ~/.opencode/opencode.jsonc
 echo
 create_or_recreate "${PWD}/config/starship.toml" ~/.config/starship.toml
+echo
+create_or_recreate "${PWD}/config/tmux/tmux.conf" ~/.config/tmux/tmux.conf
